@@ -86,7 +86,7 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
         width: double.infinity,
         decoration:  const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/login_backend.png"),
+              image: AssetImage("assets/images/banner.jpg"),
               fit: BoxFit.cover),
         ),
 
@@ -94,7 +94,7 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
           child: Column(
             children: [
               SizedBox(height: 133.h),
-              Image.asset('assets/images/img.png',width: 176.w,height: 40.h,),
+              Image.asset('assets/images/smart_software.png',width: 176.w,height: 40.h,),
 
 
               ///...............................................login container...........................................
@@ -119,9 +119,9 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
                     padding:  EdgeInsets.only(top: 16.0.h,left:12.w,right: 12.w ,bottom: 16.h),
                     child: Column(
                       children: [
-                        Text('Sign In', style: TextStyle(color: AppColors.lightGrey),),
+                        Text('Sign In', style: TextStyle(color: AppColors.primary),),
                         SizedBox(height: 6.h,),
-                        Text('Welcome to seller login ', style: TextStyle(fontSize:16.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
+                        Text('Welcome to Admin login ', style: TextStyle(fontSize:16.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
                         SizedBox(height: 12.h,),
                         const Divider(height: 1,color: AppColors.white,),
                         SizedBox(height: 22.h,),
@@ -136,19 +136,19 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ///.........................phone number textform filed.....................
-                                Text('Mobile', style: TextStyle(fontSize:14.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
+                                Text('Email', style: TextStyle(fontSize:14.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
                                 SizedBox(height: 8.h,),
 
                                 CustomTextFormFiled(
                                   textEditingController: phoneTextEditingController,
-                                  hinText: 'Enter mobile number',
-                                  keyboardType: TextInputType.number,
+                                  hinText: 'Enter your email',
+                                  keyboardType: TextInputType.emailAddress,
                                   textFormFiledValidator: (value ) {
                                     if (value == null || value.isEmpty) {
-                                      return TextformFiledValidator.validatePhone(phoneTextEditingController.text);
+                                      return TextformFiledValidator.validateEmail(phoneTextEditingController.text);
                                       // return 'This filed must not be empty';
                                     }
-                                    return TextformFiledValidator.validatePhone(value);
+                                    return TextformFiledValidator.validateEmail(value);
                                     //return null;
                                   },
 
@@ -234,64 +234,6 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
                                   orElse: () => loginButton(ref),
                                 ),
 
-
-                                // AppCustomButton(
-                                //     height: 48.h,
-                                //     width: double.infinity,
-                                //     fontWeight: FontWeight.w700,
-                                //     fontSize: 14.sp,
-                                //     title: 'Sign In',
-                                //     onPressed: () async {
-                                //
-                                //       loginProvider.maybeMap(
-                                //         loading: (_) => const Center(child: CircularProgressIndicator()),
-                                //         orElse: () {
-                                //           if(_formKey.currentState!.validate()){
-                                //             ref.read(sellerauthStateNotifierProvider.notifier).loginUser(
-                                //               phoneTextEditingController.text.trim(),
-                                //               passWordTextEditingController.text.trim(),
-                                //             );
-                                //             // ).then((value) => AutoRouter.of(context).pushAndPopUntil( DashboardRoute(), predicate: (_) => false));
-                                //
-                                //             // ScaffoldMessenger.of(context).showSnackBar(
-                                //             //   SnackBar(content: Text('Processing Data')),
-                                //             // );
-                                //             //Navigator.pushNamed(context, LandingPage.routeName);
-                                //
-                                //             //AutoRouter.of(context).pushAndPopUntil( LandingRoute(), predicate: (_) => false);
-                                //
-                                //
-                                //           }
-                                //
-                                //         },
-                                //       );
-                                //
-                                //     })
-
-                                // AppCustomButton(
-                                //   height: 48.h,
-                                //   width: double.infinity,
-                                //   fontWeight: FontWeight.w700,
-                                //   fontSize: 14.sp,
-                                //   title: 'Sign In',
-                                //   onPressed: () async {
-                                //     loginProvider.maybeMap(
-                                //       loading: (_) => const Center(child: CircularProgressIndicator()),
-                                //       orElse: () async {
-                                //         if (_formKey.currentState!.validate()) {
-                                //           final result = await ref.read(sellerauthStateNotifierProvider.notifier).loginUser(
-                                //             phoneTextEditingController.text.trim(),
-                                //             passWordTextEditingController.text.trim(),
-                                //           );
-                                //           SharedPreferences pref = await SharedPreferences.getInstance();
-                                //           pref.setBool('logged_in', true);
-                                //           //widget.onResult.call(true);
-                                //         }
-                                //       },
-                                //     );
-                                //   },
-                                // )
-
                               ],
                             ),
                           ),
@@ -304,12 +246,11 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Become a seller',style:TextStyle(fontSize:14.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
+                            Text('Become an Admin',style:TextStyle(fontSize:14.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
 
                             TextButton(
                                 onPressed: (){
-                                  // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                                  //     SignUpPage()), (Route<dynamic> route) => false);
+
                                 },
                                 child: Text('Sign Up',style: TextStyle(fontSize: 14.sp,fontWeight:FontWeight.w700,color: const Color(0xFF0000FF,),
                                   decoration: TextDecoration.underline,

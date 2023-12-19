@@ -290,7 +290,8 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
         color: Colors.amber,
           height: 48.h,
           width: double.infinity,
-        child: Center(child: Text('Sign In',style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.sp,color: Colors.black),)),
+        child: Center(
+            child: Text('Sign In',style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.sp,color: Colors.black),)),
       ),
     );
   }

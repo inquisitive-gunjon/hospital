@@ -12,7 +12,7 @@ class UserLoginData extends Equatable{
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'username': email,
+      'email': email,
       'password': password,
     };
   }

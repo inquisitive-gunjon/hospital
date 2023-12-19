@@ -2,7 +2,7 @@ class AppConfigs {
 
 
   ///---image-url---
-  static String shopImageUrl="https://backend.bppshop.com.bd/assets/front-end/img/";
+  static String shopImageUrl="";
 
   ///---base url---
   static String baseUrl = 'https://apitest.smartsoft-bd.com/api';

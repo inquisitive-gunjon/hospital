@@ -46,4 +46,20 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
 
+  /// -------------------------------------logOut---------------------------------------------------
+  Future<void> logOutAdmin() async {
+
+    state = const AuthState.loading();
+
+    StorageService sharedPrefsService=SharedPrefsService();
+    sharedPrefsService.init();
+    await sharedPrefsService.remove("token");
+    AppConfigs.accessToken =null;
+    if (AppConfigs.accessToken==null) {
+      state= const AuthState.success();
+    }
+    state= AuthState.failure(CacheFailureException());
+  }
+
+
 }

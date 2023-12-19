@@ -104,7 +104,7 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: AppColorResource.appWhiteColor,
+                    color: AppColors.red,
                     boxShadow:[
                       BoxShadow(
                         color: Color(0xff000000).withOpacity(0.12),
@@ -119,11 +119,11 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
                     padding:  EdgeInsets.only(top: 16.0.h,left:12.w,right: 12.w ,bottom: 16.h),
                     child: Column(
                       children: [
-                        Text('Sign In', style: myStyleInter(22.sp,AppColorResource.primaryTextColor,FontWeight.w700,0.3),),
+                        Text('Sign In', style: TextStyle(color: AppColors.lightGrey),),
                         SizedBox(height: 6.h,),
-                        Text('Welcome to seller login ', style: myStyleInter(16.sp,AppColorResource.primaryTextColor,FontWeight.w500,0.3),),
+                        Text('Welcome to seller login ', style: TextStyle(fontSize:16.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
                         SizedBox(height: 12.h,),
-                        const Divider(height: 1,color: AppColorResource.dividerColor,),
+                        const Divider(height: 1,color: AppColors.white,),
                         SizedBox(height: 22.h,),
 
                         ///..............................Textform filed for Mobile and password.................
@@ -136,7 +136,7 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ///.........................phone number textform filed.....................
-                                Text('Mobile', style: myStyleInter(14.sp,AppColorResource.primaryTextColor,FontWeight.w400,),),
+                                Text('Mobile', style: TextStyle(fontSize:14.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
                                 SizedBox(height: 8.h,),
 
                                 CustomTextFormFiled(
@@ -165,7 +165,7 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
 
                                 ///...........................password textformfiled...........................
                                 SizedBox(height: 20.h,),
-                                Text('Password', style: myStyleInter(14.sp,AppColorResource.primaryTextColor,FontWeight.w400,),),
+                                Text('Password', style: TextStyle(fontSize:14.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
                                 SizedBox(height: 8.h,),
                                 CustomTextFormFiled(
                                   textEditingController: passWordTextEditingController,
@@ -215,11 +215,11 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
                                       ),
                                     ),
                                     SizedBox(width: 10.w,),
-                                    Text('Remember Me',style:myStyleInter(14.sp,Color(0Xff989898),FontWeight.w500,0.3 )),
+                                    Text('Remember Me',style:TextStyle(fontSize:14.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
                                     const Spacer(),
                                     TextButton(
                                         onPressed: (){},
-                                        child: Text('Forgot password ?',style:myStyleInter(12.sp,Color(0xff0177CD),FontWeight.w600,0.3 ))),
+                                        child: Text('Forgot password ?',style:TextStyle(fontSize:14.sp,color:AppColors.black,fontWeight:FontWeight.w500),)),
                                   ],
                                 ),
                                 SizedBox(height: 36.h,),
@@ -304,7 +304,7 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Become a seller',style:myStyleInter(14.sp, AppColorResource.primaryTextColor,FontWeight.w500) ,),
+                            Text('Become a seller',style:TextStyle(fontSize:14.sp,color:AppColors.black,fontWeight:FontWeight.w500),),
 
                             TextButton(
                                 onPressed: (){
@@ -335,21 +335,22 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
 
   ///--------------------------------------------loginButton-------------------------------------------------
   Widget loginButton(WidgetRef ref) {
-    return AppCustomButton(
-      height: 48.h,
-      width: double.infinity,
-      fontWeight: FontWeight.w700,
-      fontSize: 14.sp,
-      title: 'Sign In',
-      onPressed: () async{
-        // validate email and password
-        if(_formKey.currentState!.validate()){
-          final result = ref.read(authStateNotifierProvider.notifier).adminLogin(
-            phoneTextEditingController.text.trim(),
-            passWordTextEditingController.text.trim(),
-          );
-        }
-      },
+    return GestureDetector(
+      onTap:  ()async{
+          // validate email and password
+          if(_formKey.currentState!.validate()){
+            final result = ref.read(authStateNotifierProvider.notifier).adminLogin(
+              phoneTextEditingController.text.trim(),
+              passWordTextEditingController.text.trim(),
+            );
+          }
+        },
+      child: Container(
+        color: Colors.amber,
+          height: 48.h,
+          width: double.infinity,
+        child: Center(child: Text('Sign In',style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.sp,color: Colors.black),)),
+      ),
     );
   }
 

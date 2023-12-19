@@ -27,6 +27,7 @@ class AuthUserRemoteDataSource implements AuthUserDataSource {
   /// ---------------------------------------login-------------------------------------------------
   @override
   Future<Either<AppException, LogInResponseModel>> loginUser({required UserLoginData user}) async {
+    log(user.toJson().toString());
     try {
       final eitherType = await networkService.post(
         AppConfigs.logInPath,

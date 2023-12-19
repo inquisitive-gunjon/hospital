@@ -30,7 +30,7 @@ class LogInScreen extends ConsumerStatefulWidget{
 class _SignInPageState extends ConsumerState<LogInScreen> {
 
   final _formKey = GlobalKey<FormState>();
-  TextEditingController phoneTextEditingController = TextEditingController();
+  TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passWordTextEditingController = TextEditingController();
   bool isChecked = false;
 
@@ -38,7 +38,7 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
 
   @override
   void dispose(){
-    phoneTextEditingController.dispose();
+    emailTextEditingController.dispose();
     passWordTextEditingController.dispose();
     super.dispose();
 
@@ -140,12 +140,12 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
                                 SizedBox(height: 8.h,),
 
                                 CustomTextFormFiled(
-                                  textEditingController: phoneTextEditingController,
+                                  textEditingController: emailTextEditingController,
                                   hinText: 'Enter your email',
                                   keyboardType: TextInputType.emailAddress,
                                   textFormFiledValidator: (value ) {
                                     if (value == null || value.isEmpty) {
-                                      return TextformFiledValidator.validateEmail(phoneTextEditingController.text);
+                                      return TextformFiledValidator.validateEmail(emailTextEditingController.text);
                                       // return 'This filed must not be empty';
                                     }
                                     return TextformFiledValidator.validateEmail(value);
@@ -281,7 +281,7 @@ class _SignInPageState extends ConsumerState<LogInScreen> {
           // validate email and password
           if(_formKey.currentState!.validate()){
             final result = ref.read(authStateNotifierProvider.notifier).adminLogin(
-              phoneTextEditingController.text.trim(),
+              emailTextEditingController.text.trim(),
               passWordTextEditingController.text.trim(),
             );
           }

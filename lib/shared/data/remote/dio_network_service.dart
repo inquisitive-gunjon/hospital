@@ -56,27 +56,6 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
       AppConfigs.accessToken = accessToken;
       // return accessToken;
     }
-    /// get token from Keycloak server
-    // final keycloakTokenResponse = await _accessTokenFromKeycloakServer;
-    // accessToken = keycloakTokenResponse.accessToken;
-    // final refreshToken = keycloakTokenResponse.refreshToken;
-    // if (!tokenHasExpired(accessToken) && !tokenHasExpired(refreshToken)) {
-    //   // update secure storage
-    //   await Future.wait([
-    //     LocalSecureStorageRepository.update(
-    //       SecureStorageKeys.accessToken,
-    //       accessToken,
-    //     ),
-    //     LocalSecureStorageRepository.update(
-    //       SecureStorageKeys.refreshToken,
-    //       refreshToken,
-    //     )
-    //   ]);
-    //   // update cache
-    //   _config.accessToken = accessToken;
-    //   return accessToken;
-    // }
-    // return accessToken!;
   }
 
   @override

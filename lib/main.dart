@@ -1,22 +1,33 @@
+import 'package:hospital_riverpod/main/app.dart';
+import 'package:hospital_riverpod/main/app_env.dart';
+import 'package:hospital_riverpod/main/observers.dart';
+import 'package:hospital_riverpod/routes/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_it/get_it.dart';
 
-void main() {
-  runApp(const MyApp());
+
+GetIt getIt = GetIt.instance;
+void main() => mainCommon(AppEnvironment.PROD);
+
+Future<void> mainCommon(AppEnvironment environment) async {
+  getIt.registerSingleton<AppRouter>(AppRouter());
+  WidgetsFlutterBinding.ensureInitialized();
+  EnvInfo.initialize(environment);
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Colors.black,
+      statusBarBrightness: Brightness.light,
+    ),
+  );
+  runApp(ProviderScope(
+    observers: [
+      Observers(),
+    ],
+    child: MyApp(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Smart Hospital',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
+//check git credential

@@ -15,7 +15,7 @@ final blogDataSourceProvider =
 );
 
 
-final blogRepositoryProvider = Provider<BlogListRepository>((ref) {
+final blogRepositoryProvider = Provider<BlogRepository>((ref) {
   final networkService = ref.watch(networkServiceProvider);
   final datasource = ref.watch(blogDataSourceProvider(networkService));
   final repository = BlogRepositoryImpl(datasource);

@@ -9,14 +9,10 @@ abstract class NetworkService {
 
   void updateHeader({required String token});
 
-  Future<Either<AppException, Response>> get(
-      String endpoint, {
-        Map<String, dynamic>? queryParameters,
-      });
+  Future<Either<AppException, Response>> get(String endpoint, {Map<String, dynamic>? queryParameters,});
 
-  Future<Either<AppException, Response>> post(
-      String endpoint, {
-        Map<String, dynamic>? data,
-      });
+  Future<Either<AppException, Response>> post(String endpoint, {Map<String, dynamic>? data,});
+
+  Future<Either<AppException, Response>> delete(String endpoint, {Map<String, dynamic>? data,});
 
 }

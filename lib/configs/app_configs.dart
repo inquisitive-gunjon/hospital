@@ -13,9 +13,9 @@ class AppConfigs {
   static String logOutPath = '/logout';
 
   ///---app feature url---
-  static String blogList = '/admin/blog-news';
-  static String blogStore = '/admin/blog-news/store';
-  static String blogUpdate = '/admin/blog-news/update/';
-  static String blogDelete = '/admin/blog-news/delete/';
+  static String blogListPath = '/admin/blog-news';
+  static String blogStorePath = '/admin/blog-news/store';
+  static String blogUpdatePath = '/admin/blog-news/update/';
+  static String blogDeletePath = '/admin/blog-news/delete/';
 
 }

@@ -26,15 +26,19 @@ class AppRouter extends _$AppRouter{
       page: LandingRoute.page,
       initial: true,
       guards: [AuthGuard()],
-      children: [
-        AutoRoute(page: BlogListRoute.page,initial: true,),
-        AutoRoute(page: BlogStoreRoute.page,),
-        AutoRoute(page: BlogUpdateRoute.page,),
-        AutoRoute(page: BlogDeleteRoute.page,),
-      ],
+      // children: [
+      //   AutoRoute(page: BlogListRoute.page,),
+      //   AutoRoute(page: BlogStoreRoute.page,),
+      //   AutoRoute(page: BlogUpdateRoute.page,),
+      //   AutoRoute(page: BlogDeleteRoute.page,),
+      // ],
     ),
 
     AutoRoute(page: LogInRoute.page,),
+    AutoRoute(page: BlogListRoute.page,),
+    AutoRoute(page: BlogStoreRoute.page,),
+    AutoRoute(page: BlogUpdateRoute.page,),
+    AutoRoute(page: BlogDeleteRoute.page,),
 
   ];
 

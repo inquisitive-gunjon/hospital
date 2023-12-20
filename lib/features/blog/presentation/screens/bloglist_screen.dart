@@ -29,7 +29,7 @@ class _BlogListScreenState extends ConsumerState<BlogListScreen> {
 
   void scrollControllerListener() {
     if (scrollController.position.maxScrollExtent == scrollController.offset) {
-      final notifier = ref.read(blogListNotifierProvider.notifier);
+      final notifier = ref.read(blogNotifierProvider.notifier);
       notifier.fetchBlogListData();
     }
   }
@@ -42,14 +42,14 @@ class _BlogListScreenState extends ConsumerState<BlogListScreen> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    final allOrderInformationState = ref.watch(blogListNotifierProvider);
-    final notifierState = ref.read(blogListNotifierProvider.notifier);
+    final allOrderInformationState = ref.watch(blogNotifierProvider);
+    final notifierState = ref.read(blogNotifierProvider.notifier);
 
     ref.listen(
-      blogListNotifierProvider.select((value) => value),
+      blogNotifierProvider.select((value) => value),
       ((BlogState? previous, BlogState next) {
         //show Snackbar on failure
-        if (next.state == BlogConcreteState.fetchProductDetails) {
+        if (next.state == BlogConcreteState.fetchBlogDetails) {
           if (next.message.isNotEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(next.message.toString())));
           }
@@ -66,13 +66,20 @@ class _BlogListScreenState extends ConsumerState<BlogListScreen> {
                     shrinkWrap: true,
                     itemCount: notifierState.state.blogDataList!.length,
                     itemBuilder: (context,index){
-                      return Container(
-                        height: 100.h,
-                        width: double.infinity,
-                        child: Column(
-                          children: [
-                            Text(notifierState.state.blogDataList![index].title)
-                          ],
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 100.h,
+                          width: double.infinity,
+                          color: Colors.amber,
+                          child: Column(
+                            children: [
+                              Text(notifierState.state.blogDataList![index].title),
+                              Text(notifierState.state.blogDataList![index].createdAt),
+                              Text(notifierState.state.blogDataList![index].date),
+                              Text(notifierState.state.blogDataList![index].description)
+                            ],
+                          ),
                         ),
                       );
                     },

@@ -2,8 +2,8 @@
 /// message : "Success"
 /// status : 1
 
-class BlogListResponseModel {
-  BlogListResponseModel({
+class BlogResponseModel {
+  BlogResponseModel({
     Data? data,
     dynamic message,
     dynamic status,}){
@@ -12,7 +12,7 @@ class BlogListResponseModel {
     _status = status;
   }
 
-  BlogListResponseModel.fromJson(dynamic json) {
+  BlogResponseModel.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
     _message = json['message'];
     _status = json['status'];
@@ -20,10 +20,10 @@ class BlogListResponseModel {
   Data? _data;
   dynamic _message;
   dynamic _status;
-  BlogListResponseModel copyWith({  Data? data,
+  BlogResponseModel copyWith({  Data? data,
     dynamic message,
     dynamic status,
-  }) => BlogListResponseModel(  data: data ?? _data,
+  }) => BlogResponseModel(  data: data ?? _data,
     message: message ?? _message,
     status: status ?? _status,
   );

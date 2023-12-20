@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hospital_riverpod/features/blog/domain/models/bloglist_response_model.dart';
+import 'package:hospital_riverpod/features/blog/domain/models/response/bloglist_response_model.dart';
 
 // import '../../../../../products/domain/models/ProductListModel.dart';
 // import '../../../../domain/model/all_orders_model.dart';
@@ -12,10 +12,10 @@ enum BlogConcreteState{
   loaded,
   failure,
   fetchingMore,
-  fetchProductDetails
+  fetchBlogDetails
 
 }
-@freezed
+
 class BlogState extends Equatable {
   final Data? data;
   final List<BlogModelData>? blogDataList;

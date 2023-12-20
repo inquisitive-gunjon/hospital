@@ -5,8 +5,23 @@ import 'package:hospital_riverpod/features/blog/domain/providers/bloglist_reposi
 import 'package:hospital_riverpod/features/blog/presentation/providers/state/blog_notifire.dart';
 import 'package:hospital_riverpod/features/blog/presentation/providers/state/blog_state.dart';
 
-final blogListNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
+final blogNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
   final repository = ref.watch(blogRepositoryProvider);
-  return BlogNotifier(repository)..fetchBlogListData();
+  return BlogNotifier(repository);
 });
+
+// final blogStoreNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
+//   final repository = ref.watch(blogRepositoryProvider);
+//   return BlogNotifier(repository);
+// });
+//
+// final blogUpdateNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
+//   final repository = ref.watch(blogRepositoryProvider);
+//   return BlogNotifier(repository);
+// });
+//
+// final blogDeleteNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
+//   final repository = ref.watch(blogRepositoryProvider);
+//   return BlogNotifier(repository);
+// });
 

@@ -7,21 +7,21 @@ import 'package:hospital_riverpod/features/blog/presentation/providers/state/blo
 
 final blogNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
   final repository = ref.watch(blogRepositoryProvider);
+  return BlogNotifier(repository)..fetchBlogListData();
+});
+
+final blogStoreNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
+  final repository = ref.watch(blogRepositoryProvider);
   return BlogNotifier(repository);
 });
 
-// final blogStoreNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
-//   final repository = ref.watch(blogRepositoryProvider);
-//   return BlogNotifier(repository);
-// });
-//
-// final blogUpdateNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
-//   final repository = ref.watch(blogRepositoryProvider);
-//   return BlogNotifier(repository);
-// });
-//
-// final blogDeleteNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
-//   final repository = ref.watch(blogRepositoryProvider);
-//   return BlogNotifier(repository);
-// });
+final blogUpdateNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
+  final repository = ref.watch(blogRepositoryProvider);
+  return BlogNotifier(repository);
+});
+
+final blogDeleteNotifierProvider = StateNotifierProvider<BlogNotifier, BlogState>((ref) {
+  final repository = ref.watch(blogRepositoryProvider);
+  return BlogNotifier(repository);
+});
 

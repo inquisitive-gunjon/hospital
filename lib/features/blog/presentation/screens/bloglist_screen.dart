@@ -27,6 +27,10 @@ class _BlogListScreenState extends ConsumerState<BlogListScreen> {
     scrollController.addListener(scrollControllerListener);
   }
 
+  initialLoadData()async{
+    ref.read(blogNotifierProvider.notifier).fetchBlogListData();
+  }
+
   void scrollControllerListener() {
     if (scrollController.position.maxScrollExtent == scrollController.offset) {
       final notifier = ref.read(blogNotifierProvider.notifier);
@@ -42,11 +46,11 @@ class _BlogListScreenState extends ConsumerState<BlogListScreen> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    final allOrderInformationState = ref.watch(blogNotifierProvider);
-    final notifierState = ref.read(blogNotifierProvider.notifier);
+    final state = ref.watch(blogNotifierProvider);
 
-    ref.listen(
-      blogNotifierProvider.select((value) => value),
+    // final notifierState = ref.read(blogNotifierProvider.notifier);
+
+    ref.listen(blogNotifierProvider.select((value) => value),
       ((BlogState? previous, BlogState next) {
         //show Snackbar on failure
         if (next.state == BlogConcreteState.fetchBlogDetails) {
@@ -60,11 +64,11 @@ class _BlogListScreenState extends ConsumerState<BlogListScreen> {
       appBar: AppBar(title: Text("Blog List"),centerTitle: true,backgroundColor: AppColors.primary,),
       body: Column(
         children: [
-          notifierState.state.isinitial == false &&  notifierState.state.isLoading == false?
+          state.isinitial == false &&  state.isLoading == false?
               Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: notifierState.state.blogDataList!.length,
+                    itemCount: state.blogDataList!.length,
                     itemBuilder: (context,index){
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -74,10 +78,10 @@ class _BlogListScreenState extends ConsumerState<BlogListScreen> {
                           color: Colors.amber,
                           child: Column(
                             children: [
-                              Text(notifierState.state.blogDataList![index].title),
-                              Text(notifierState.state.blogDataList![index].createdAt),
-                              Text(notifierState.state.blogDataList![index].date),
-                              Text(notifierState.state.blogDataList![index].description)
+                              Text(state.blogDataList![index].title),
+                              Text(state.blogDataList![index].createdAt),
+                              Text(state.blogDataList![index].date),
+                              Text(state.blogDataList![index].description)
                             ],
                           ),
                         ),

@@ -50,8 +50,7 @@ class BlogNotifier extends StateNotifier<BlogState>{
     }
   }
 
-  void updateStateFromResponse(
-      Either<AppException,  BlogResponseModel> response) {
+  void updateStateFromResponse(Either<AppException,  BlogResponseModel> response) {
     response.fold((failure) {
       state = state.copyWith(
         state: BlogConcreteState.failure,
@@ -102,6 +101,24 @@ class BlogNotifier extends StateNotifier<BlogState>{
 
       final response = await blogRepository.storeBlogData(blogDataRequestModel: blogDataRequestModel);
       // skip: state.page * PRODUCTS_PER_PAGE);
+      response.fold((failure) {
+        state = state.copyWith(
+          state: BlogConcreteState.failure,
+          message: failure.message,
+          isLoading: false,
+          // isinitial: false
+        );
+      }, (responseData) {
+
+        state = state.copyWith(
+            state: BlogConcreteState.loading,
+            message: responseData.message,
+            isLoading: true,
+        );
+
+        fetchBlogListData();
+
+      });
 
     } else {
       state = state.copyWith(
@@ -120,7 +137,7 @@ class BlogNotifier extends StateNotifier<BlogState>{
   }
 
   ///updateBlogData
-  Future<void> updateBlogData() async {
+  Future<void> updateBlogData({required String blogId,required BlogDataRequestModel blogDataRequestModel}) async {
     if (isFetching && state.state !=  BlogConcreteState.fetchBlogDetails) {
       state = state.copyWith(
         state: state.page > 0
@@ -131,10 +148,26 @@ class BlogNotifier extends StateNotifier<BlogState>{
 
       );
 
-      final response = await blogRepository.fetchBlogList(skip: state.page+1);
+      final response = await blogRepository.updateBlogData(blogId: blogId,blogDataRequestModel: blogDataRequestModel);
       // skip: state.page * PRODUCTS_PER_PAGE);
+      response.fold((failure) {
+        state = state.copyWith(
+          state: BlogConcreteState.failure,
+          message: failure.message,
+          isLoading: false,
+          // isinitial: false
+        );
+      }, (responseData) {
 
-      updateStateFromResponse(response);
+        state = state.copyWith(
+          state: BlogConcreteState.loading,
+          message: responseData.message,
+          isLoading: true,
+        );
+
+        fetchBlogListData();
+
+      });
     } else {
       state = state.copyWith(
         state: BlogConcreteState.failure,
@@ -152,7 +185,7 @@ class BlogNotifier extends StateNotifier<BlogState>{
   }
 
   ///deleteBlogData
-  Future<void> deleteBlogData() async {
+  Future<void> deleteBlogData({required String blogId}) async {
     if (isFetching && state.state !=  BlogConcreteState.fetchBlogDetails) {
       state = state.copyWith(
         state: state.page > 0
@@ -163,10 +196,26 @@ class BlogNotifier extends StateNotifier<BlogState>{
 
       );
 
-      final response = await blogRepository.fetchBlogList(skip: state.page+1);
+      final response = await blogRepository.deleteBlogData(blogId: blogId);
       // skip: state.page * PRODUCTS_PER_PAGE);
+      response.fold((failure) {
+        state = state.copyWith(
+          state: BlogConcreteState.failure,
+          message: failure.message,
+          isLoading: false,
+          // isinitial: false
+        );
+      }, (responseData) {
 
-      updateStateFromResponse(response);
+        state = state.copyWith(
+          state: BlogConcreteState.loading,
+          message: responseData.message,
+          isLoading: true,
+        );
+
+        fetchBlogListData();
+
+      });
     } else {
       state = state.copyWith(
         state: BlogConcreteState.failure,
